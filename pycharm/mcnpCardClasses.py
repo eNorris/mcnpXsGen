@@ -66,7 +66,7 @@ class McnpCellDeck:
         #print("cell deck is parsing title card")
         newcard.parse(dataqueue.get(block=True, timeout=1), dataqueue, readstate)
         self.cards.append(newcard)
-        print(str(newcard))
+        #print(str(newcard))
 
         # Read the next line
         line = dataqueue.get(block=True, timeout=1)
@@ -91,12 +91,18 @@ class McnpCellDeck:
             self.cards.append(newcard)
 
             #print("after pars")
-            print(str(newcard))
+            #print(str(newcard))
 
             # Advance to next card
             line = dataqueue.get(block=True, timeout=1)
 
         return True
+
+    def __str__(self):
+        r = ""
+        for card in self.cards:
+            r += str(card) + "\n"
+        return r
 
 
 class McnpSurfDeck:

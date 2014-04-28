@@ -17,7 +17,7 @@ class CrossSection:
     def __init__(self):
         self.energy = []
         self.value = []
-        
+
 
 class Isotope:
 
