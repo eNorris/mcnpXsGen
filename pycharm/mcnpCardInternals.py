@@ -77,6 +77,9 @@ class McnpFileLine:
             if not readstate.comment:
                 print("ERROR: No command token found @ line " + str(readstate.lineno))
                 readstate.errors.append((readstate.lineno, McnpError.NO_CMD_TOKEN))
+            else:
+                self.cmdtoken = "c"
+                data = ""
         #print("pose data = " + data)
 
         if len(self.cmdtoken) > 5 and not readstate.title:

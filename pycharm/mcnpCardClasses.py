@@ -174,7 +174,8 @@ class McnpCommentCard(McnpCard):
 
     def __str__(self):
         #print("in __str__ cardata = " + self.carddata)
-        return str(self.cardno) + " #> " + self.carddata
+        #return str(self.cardno) + " #> " + self.carddata
+        return str("{0: >2}".format(self.cardno) + " #       > " + self.carddata)
 
 
 class McnpCellCard(McnpCard):
@@ -188,12 +189,18 @@ class McnpCellCard(McnpCard):
 
     def parse(self, dataline, dataqueue, readstate):
         self.lines.append(mcnpCardInternals.McnpFileLine(dataline, readstate))
-        #self.cardno = self.lines[-1].cardno
 
         # Copy data
         self.cmdtoken = self.lines[-1].cmdtoken
         self.carddata += self.lines[-1].data
         self.cardno = readstate.cardno
+
+        # Get additional lines of data
+        while self.carddata.endswith("&"):
+            self.carddata = self.carddata[:-1]  # Throw away '&'
+            self.lines.append(mcnpCardInternals.McnpFileLine(dataqueue.get(block=True, timeout=1), readstate))
+            self.carddata += self.lines[-1].data
+            readstate.lineno += 1
 
         # Validate data
         try:
@@ -208,7 +215,7 @@ class McnpCellCard(McnpCard):
         readstate.cardno += 1
 
     def __str__(self):
-        return str(self.cardno) + " C> " + self.carddata
+        return str("{0: >2}".format(self.cardno) + " C " + "{0: >5}".format(self.id) + " > " + self.carddata)
 
 
 class McnpTitleCard(McnpCard):
@@ -226,24 +233,45 @@ class McnpTitleCard(McnpCard):
         readstate.title = False
 
         self.cardno = readstate.cardno
-        self.carddata = self.lines[-1].raw
-        print("Title::parse(): raw = " + self.carddata)
+        self.carddata = self.lines[-1].raw.rstrip()
+        self.title = self.carddata
 
         # Prep the readstate for the next card
         readstate.lineno += 1
         readstate.cardno += 1
 
     def __str__(self):
-        return str(self.cardno) + " T> " + self.title
+        return str("{0: >2}".format(self.cardno) + " T       > " + self.title)
 
 
 class McnpSurfCard(McnpCard):
-    pass
+    """
+    Mcnp surface card
+    """
+
+    def __init__(self):
+        super(McnpSurfCard, self).__init__()
+        self.surf = ""
+        self.args = []
 
 
 class McnpDataCard(McnpCard):
-    pass
+    """
+    Mcnp Data Card
+    """
+
+    def __init__(self):
+        super(McnpDataCard, self).__init__()
+        self.surf = ""
+        self.args = []
 
 
 class McnpBadCard(McnpCard):
-    pass
+    """
+    Erroneous card - could not be read
+    """
+
+    def __init__(self):
+        super(McnpBadCard, self).__init__()
+        self.surf = ""
+        self.args = []

@@ -22,7 +22,7 @@
     <favorites_list name="pycharm" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.50757027">
+    <splitter split-orientation="horizontal" split-proportion="0.6813266">
       <split-first>
         <leaf>
           <file leaf-file-name="mcnpXsClasses.py" pinned="false" current="false" current-in-tab="false">
@@ -37,7 +37,7 @@
           <file leaf-file-name="mcnpCardClasses.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mcnpCardClasses.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="192" column="19" selection-start="4939" selection-end="4939" vertical-scroll-proportion="-1.2764579" vertical-offset="3855" max-vertical-offset="4318">
+                <state line="182" column="18" selection-start="4724" selection-end="4724" vertical-scroll-proportion="0.5009862" vertical-offset="2840" max-vertical-offset="4794">
                   <folding>
                     <element signature="e#23#47#0" expanded="true" />
                   </folding>
@@ -63,7 +63,7 @@
           <file leaf-file-name="mcnpCardInternals.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mcnpCardInternals.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="49" column="26" selection-start="941" selection-end="941" vertical-scroll-proportion="0.29589632" vertical-offset="696" max-vertical-offset="2397">
+                <state line="81" column="24" selection-start="2350" selection-end="2350" vertical-scroll-proportion="0.61133605" vertical-offset="1075" max-vertical-offset="2448">
                   <folding />
                 </state>
               </provider>
@@ -83,8 +83,8 @@
       <list>
         <option value="$PROJECT_DIR$/mcnpXsClasses.py" />
         <option value="$PROJECT_DIR$/maintest.py" />
-        <option value="$PROJECT_DIR$/mcnpCardClasses.py" />
         <option value="$PROJECT_DIR$/mcnpCardInternals.py" />
+        <option value="$PROJECT_DIR$/mcnpCardClasses.py" />
       </list>
     </option>
   </component>
@@ -364,7 +364,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32987013" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32977304" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28838453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -433,14 +433,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mcnpCardInternals.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="26" selection-start="941" selection-end="941" vertical-scroll-proportion="0.29589632" vertical-offset="696" max-vertical-offset="2397">
+        <state line="81" column="24" selection-start="2350" selection-end="2350" vertical-scroll-proportion="0.61133605" vertical-offset="1075" max-vertical-offset="2448">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mcnpCardClasses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="19" selection-start="4939" selection-end="4939" vertical-scroll-proportion="-1.2764579" vertical-offset="3855" max-vertical-offset="4318">
+        <state line="182" column="18" selection-start="4724" selection-end="4724" vertical-scroll-proportion="0.5009862" vertical-offset="2840" max-vertical-offset="4794">
           <folding>
             <element signature="e#23#47#0" expanded="true" />
           </folding>
