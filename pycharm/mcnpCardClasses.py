@@ -111,10 +111,38 @@ class McnpSurfDeck:
     """
 
     def __init__(self):
-        self.cards = None
+        self.cards = []
 
     def parse(self, dataqueue, readstate):
-        pass
+
+        # Read the next line
+        line = dataqueue.get(block=True, timeout=1)
+
+        while line.strip() != "":
+            cmdtoken = line.lstrip().split(' ', 1)[0]
+
+            # Determine the card type
+            if cmdtoken == "c" or cmdtoken == "C":
+                newcard = McnpCommentCard()
+            elif re.match('^\d{1,5}$', cmdtoken):
+                newcard = McnpSurfCard()
+            else:
+                newcard = McnpBadCard()
+
+            # Parse the card and add it to the list
+            newcard.parse(line, dataqueue, readstate)
+            self.cards.append(newcard)
+
+            # Advance to next card
+            line = dataqueue.get(block=True, timeout=1)
+
+        return True
+
+    def __str__(self):
+        r = ""
+        for card in self.cards:
+            r += str(card) + "\n"
+        return r
 
 
 class McnpDataDeck:
@@ -259,6 +287,36 @@ class McnpSurfCard(McnpCard):
         super(McnpSurfCard, self).__init__()
         self.surf = ""
         self.args = []
+
+    def parse(self, dataline, dataqueue, readstate):
+        self.lines.append(mcnpCardInternals.McnpFileLine(dataline, readstate))
+
+        # Copy data
+        self.cmdtoken = self.lines[-1].cmdtoken
+        self.carddata += self.lines[-1].data
+        self.cardno = readstate.cardno
+
+        # Get additional lines of data
+        while self.carddata.endswith("&"):
+            self.carddata = self.carddata[:-1]  # Throw away '&'
+            self.lines.append(mcnpCardInternals.McnpFileLine(dataqueue.get(block=True, timeout=1), readstate))
+            self.carddata += self.lines[-1].data
+            readstate.lineno += 1
+
+        # Validate data
+        try:
+            self.id = int(self.cmdtoken)
+        except ValueError:
+            print("ERROR: Could not transform cmd token on line " + str(readstate.lineno) +
+                  " to integer ('" + self.cmdtoken + "')")
+            readstate.errors.append((readstate.lineno, mcnpCardInternals.McnpError.BAD_CMD_TOKEN))
+
+        # Prep the readstate for the next card
+        readstate.lineno += 1
+        readstate.cardno += 1
+
+    def __str__(self):
+        return str("{0: >2}".format(self.cardno) + " C " + "{0: >5}".format(self.id) + " > " + self.carddata)
 
 
 class McnpDataCard(McnpCard):
