@@ -22,7 +22,7 @@
     <favorites_list name="pycharm" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6813266">
+    <splitter split-orientation="horizontal" split-proportion="0.4744052">
       <split-first>
         <leaf>
           <file leaf-file-name="mcnpXsClasses.py" pinned="false" current="false" current-in-tab="false">
@@ -37,7 +37,7 @@
           <file leaf-file-name="mcnpCardClasses.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mcnpCardClasses.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="318" column="109" selection-start="9127" selection-end="9127" vertical-scroll-proportion="0.73175544" vertical-offset="5035" max-vertical-offset="5882">
+                <state line="399" column="0" selection-start="11642" selection-end="11642" vertical-scroll-proportion="0.28702012" vertical-offset="6626" max-vertical-offset="7310">
                   <folding>
                     <element signature="e#23#47#0" expanded="true" />
                   </folding>
@@ -48,7 +48,7 @@
           <file leaf-file-name="maintest.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/maintest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="13" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+                <state line="5" column="16" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
                   <folding>
                     <element signature="e#23#32#0" expanded="true" />
                   </folding>
@@ -63,7 +63,7 @@
           <file leaf-file-name="mcnpCardInternals.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/mcnpCardInternals.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="129" column="0" selection-start="3194" selection-end="3194" vertical-scroll-proportion="4.4392715" vertical-offset="0" max-vertical-offset="2448">
+                <state line="62" column="62" selection-start="1443" selection-end="1455" vertical-scroll-proportion="0.22696246" vertical-offset="921" max-vertical-offset="2465">
                   <folding />
                 </state>
               </provider>
@@ -81,8 +81,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/mcnpCardInternals.py" />
         <option value="$PROJECT_DIR$/mcnpXsClasses.py" />
+        <option value="$PROJECT_DIR$/mcnpCardInternals.py" />
         <option value="$PROJECT_DIR$/maintest.py" />
         <option value="$PROJECT_DIR$/mcnpCardClasses.py" />
       </list>
@@ -354,17 +354,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18291055" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18291055" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843792" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24952501" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12159595" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32987013" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28838453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28838453" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -415,13 +415,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcnpCardInternals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="0" selection-start="3194" selection-end="3194" vertical-scroll-proportion="4.4392715" vertical-offset="0" max-vertical-offset="2448">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcnpXsClasses.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="23" selection-start="548" selection-end="548" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
@@ -429,9 +422,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mcnpCardInternals.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="62" selection-start="1443" selection-end="1455" vertical-scroll-proportion="0.22696246" vertical-offset="921" max-vertical-offset="2465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/maintest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="173" selection-end="173" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+        <state line="5" column="16" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
@@ -440,7 +440,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mcnpCardClasses.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="318" column="109" selection-start="9127" selection-end="9127" vertical-scroll-proportion="0.73175544" vertical-offset="5035" max-vertical-offset="5882">
+        <state line="399" column="0" selection-start="11642" selection-end="11642" vertical-scroll-proportion="0.28702012" vertical-offset="6626" max-vertical-offset="7310">
           <folding>
             <element signature="e#23#47#0" expanded="true" />
           </folding>

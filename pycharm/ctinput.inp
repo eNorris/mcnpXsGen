@@ -55,7 +55,7 @@ c Phantom surfaces
 19 c/z 0.00000 -13.00000 0.31000    $ Bottom hole
 c 
 c Detector surfaces
-40 pz 1.20500    $ Front detector surface
+q40 pz 1.20500    $ Front detector surface
 41 pz -1.20500    $ Front detector surface
 55 cz 0.30000    $ Center hole
 56 c/z 13.00000 0.00000 0.30000    $ Right hole

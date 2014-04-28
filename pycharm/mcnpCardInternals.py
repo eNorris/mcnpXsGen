@@ -25,6 +25,7 @@ class McnpReadState:
         self.deck = McnpReadState.CELL
         self.title = False
         self.comment = False
+        self.continuecard = False
         self.errors = []
 
 
@@ -59,7 +60,7 @@ class McnpFileLine:
         if '\t' in data:
             print("WARNING: line " + str(readstate.lineno) + " contains tabs")
             readstate.errors.append((readstate.lineno, McnpError.CONTAINS_TABS))
-        if data.startswith(' '):
+        if data.startswith(' ') and not readstate.continuecard:
             print("WARNING: line " + str(readstate.lineno) + " starts with whitespace")
             readstate.errors.append((readstate.lineno, McnpError.LEADING_WHITE))
         if self.length > 80:

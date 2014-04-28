@@ -10,5 +10,6 @@ input = mcnpCardClasses.McnpInputFile()
 input.setfilename("./ctinput.inp")
 input.parse()
 
-print(" ===== CELL DECK ===== ")
+print(input.celldeck)
 print(input.surfdeck)
+print(input.datadeck)

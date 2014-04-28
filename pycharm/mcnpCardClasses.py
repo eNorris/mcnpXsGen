@@ -118,6 +118,7 @@ class McnpSurfDeck:
         # Read the next line
         line = dataqueue.get(block=True, timeout=1)
 
+        #print("line strip = " + line.strip())
         while line.strip() != "":
             cmdtoken = line.lstrip().split(' ', 1)[0]
 
@@ -151,10 +152,35 @@ class McnpDataDeck:
     """
 
     def __init__(self):
-        self.cards = None
+        self.cards = []
 
     def parse(self, dataqueue, readstate):
-        pass
+
+        # Read the next line
+        line = dataqueue.get(block=True, timeout=1)
+
+        while line.strip() != "":
+            cmdtoken = line.lstrip().split(' ', 1)[0]
+
+            # Determine the card type
+            if cmdtoken == "c" or cmdtoken == "C":
+                newcard = McnpCommentCard()
+            else:
+                newcard = McnpDataCard()
+            newcard.parse(line, dataqueue, readstate)
+            self.cards.append(newcard)
+
+            # Advance to next card
+            if dataqueue.empty():
+                return True  # Return from EOF
+            line = dataqueue.get(block=True, timeout=1)
+        return True  # Return from Data deck end - to Aux deck!
+
+    def __str__(self):
+        r = ""
+        for card in self.cards:
+            r += str(card) + "\n"
+        return r
 
 
 class McnpAuxDeck:
@@ -163,10 +189,24 @@ class McnpAuxDeck:
     """
 
     def __init__(self):
-        self.cards = None
+        self.cards = []
 
     def parse(self, dataqueue, readstate):
-        pass
+
+        # Exhause the dataqueue
+        while dataqueue.qsize() != 0:
+            line = dataqueue.get(block=True, timeout=1)
+            newcard = McnpAuxCard()
+            newcard.parse(line, dataqueue, readstate)
+            self.cards.append(newcard)
+
+        return True
+
+    def __str__(self):
+        r = ""
+        for card in self.cards:
+            r += str(card) + "\n"
+        return r
 
 
 class McnpCard:
@@ -209,7 +249,7 @@ class McnpCommentCard(McnpCard):
     def __str__(self):
         #print("in __str__ cardata = " + self.carddata)
         #return str(self.cardno) + " #> " + self.carddata
-        return str("{0: >2}".format(self.cardno) + " #       > " + self.carddata)
+        return str("{0: >3}".format(self.cardno) + " #       > " + self.carddata)
 
 
 class McnpCellCard(McnpCard):
@@ -231,10 +271,12 @@ class McnpCellCard(McnpCard):
 
         # Get additional lines of data
         while self.carddata.endswith("&"):
+            readstate.continuecard = True
             self.carddata = self.carddata[:-1]  # Throw away '&'
             self.lines.append(mcnpCardInternals.McnpFileLine(dataqueue.get(block=True, timeout=1), readstate))
             self.carddata += self.lines[-1].data
             readstate.lineno += 1
+            readstate.continuecard = False
 
         # Validate data
         try:
@@ -249,7 +291,7 @@ class McnpCellCard(McnpCard):
         readstate.cardno += 1
 
     def __str__(self):
-        return str("{0: >2}".format(self.cardno) + " C " + "{0: >5}".format(self.id) + " > " + self.carddata)
+        return str("{0: >3}".format(self.cardno) + " C " + "{0: >5}".format(self.id) + " > " + self.carddata)
 
 
 class McnpTitleCard(McnpCard):
@@ -275,7 +317,7 @@ class McnpTitleCard(McnpCard):
         readstate.cardno += 1
 
     def __str__(self):
-        return str("{0: >2}".format(self.cardno) + " T       > " + self.title)
+        return str("{0: >3}".format(self.cardno) + " T       > " + self.title)
 
 
 class McnpSurfCard(McnpCard):
@@ -287,6 +329,7 @@ class McnpSurfCard(McnpCard):
         super(McnpSurfCard, self).__init__()
         self.surf = ""
         self.args = []
+        self.id = -1
 
     def parse(self, dataline, dataqueue, readstate):
         self.lines.append(mcnpCardInternals.McnpFileLine(dataline, readstate))
@@ -298,15 +341,18 @@ class McnpSurfCard(McnpCard):
 
         # Get additional lines of data
         while self.carddata.endswith("&"):
+            readstate.continuecard = True
             self.carddata = self.carddata[:-1]  # Throw away '&'
             self.lines.append(mcnpCardInternals.McnpFileLine(dataqueue.get(block=True, timeout=1), readstate))
             self.carddata += self.lines[-1].data
             readstate.lineno += 1
+            readstate.continuecard = False
 
         # Validate data
         try:
             self.id = int(self.cmdtoken)
         except ValueError:
+            print('surf')
             print("ERROR: Could not transform cmd token on line " + str(readstate.lineno) +
                   " to integer ('" + self.cmdtoken + "')")
             readstate.errors.append((readstate.lineno, mcnpCardInternals.McnpError.BAD_CMD_TOKEN))
@@ -316,7 +362,7 @@ class McnpSurfCard(McnpCard):
         readstate.cardno += 1
 
     def __str__(self):
-        return str("{0: >2}".format(self.cardno) + " C " + "{0: >5}".format(self.id) + " > " + self.carddata)
+        return str("{0: >3}".format(self.cardno) + " S " + "{0: >5}".format(self.id) + " > " + self.carddata)
 
 
 class McnpDataCard(McnpCard):
@@ -326,8 +372,30 @@ class McnpDataCard(McnpCard):
 
     def __init__(self):
         super(McnpDataCard, self).__init__()
-        self.surf = ""
-        self.args = []
+
+    def parse(self, dataline, dataqueue, readstate):
+        self.lines.append(mcnpCardInternals.McnpFileLine(dataline, readstate))
+
+        # Copy data
+        self.cmdtoken = self.lines[-1].cmdtoken
+        self.carddata += self.lines[-1].data
+        self.cardno = readstate.cardno
+
+        # Get additional lines of data
+        while self.carddata.endswith("&"):
+            readstate.continuecard = True
+            self.carddata = self.carddata[:-1]  # Throw away '&'
+            self.lines.append(mcnpCardInternals.McnpFileLine(dataqueue.get(block=True, timeout=1), readstate))
+            self.carddata += self.lines[-1].data
+            readstate.lineno += 1
+            readstate.continuecard = False
+
+        # Prep the readstate for the next card
+        readstate.lineno += 1
+        readstate.cardno += 1
+
+    def __str__(self):
+        return str("{0: >3}".format(self.cardno) + " D       > " + self.carddata)
 
 
 class McnpBadCard(McnpCard):
@@ -339,3 +407,19 @@ class McnpBadCard(McnpCard):
         super(McnpBadCard, self).__init__()
         self.surf = ""
         self.args = []
+
+    # TODO Write this so it overrides McnpCard
+    def parse(self, dataline, dataqueue, readstate):
+        pass
+
+    def __str__(self):
+        return str("{0: >3}".format(self.cardno) + " ? !!!!! > BAD CARD")
+
+
+class McnpAuxCard(McnpCard):
+    """
+    Auxillary cards that come in the comment region after the data deck
+    """
+
+    def __init__(self):
+        super(McnpAuxCard, self).__init__()
